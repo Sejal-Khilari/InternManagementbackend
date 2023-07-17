@@ -63,7 +63,10 @@ const controller = {
     async candidateSelection(req, res, next) {
         let { candidateID, feedback, hire, hireDetails } = req.body;
 
-        hire ??= 0; // sets default as 0
+        //hire ??= 0; // sets default as 0
+        if (hire === null || hire === undefined) {
+              hire = 0;
+        }
 
         if (!candidateID) {
             return res.status(404).json({ message: "candidateID and hire are required field" })
