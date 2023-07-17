@@ -5,7 +5,8 @@ const controller = {
         const { internID } = req.query;
         if (internID) {
             let feedbacks = await Feedback.findOne({ internID })
-            feedbacks ||= { message: "no feedbacks" };
+            feedbacks = feedback || { message: "no feedbacks" };
+            
             return res.status(200).send(feedbacks)
         } else {
             return res.status(404).json({ message: "internID is required field" })
